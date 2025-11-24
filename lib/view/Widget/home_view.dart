@@ -5,7 +5,7 @@ import 'package:travelsystem/core/consta/Color.dart';
 import 'package:travelsystem/core/consta/images.dart';
 import 'package:travelsystem/core/consta/nameRoute.dart';
 
-import '../../core/Funaction/AlertExiteApp.dart';
+import '../../core/Function/alertExitApp.dart';
 import 'bottomBarItem.dart';
 
 class HomeView extends StatelessWidget {
@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
       ),
       backgroundColor: Colors.white,
       body: WillPopScope(
-        onWillPop: () => AlertExiteApp(),
+        onWillPop: () => alertExitApp(),
         child: Obx(
           () => PageView(
             controller: controller.pageController,

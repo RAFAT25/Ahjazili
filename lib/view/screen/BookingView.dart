@@ -29,7 +29,7 @@ class BookingView extends GetView<BookingController> {
       ),
       body: Center(
         child: Obx(() {
-          if (controller.requst.value == StatRequst.noInternet) {
+          if (controller.request.value == StatusRequest.noInternet) {
             return NoInternetWidget(onRetry: controller.searchTrips);
           }
           return Padding(
@@ -69,7 +69,7 @@ class BookingView extends GetView<BookingController> {
                         onPressed: () => controller.searchTrips(),
                         backgroundColor: AppColor.color_primary,
                         child: Obx(() =>
-                        controller.requst.value == StatRequst.Loding
+                        controller.request.value == StatusRequest.loading
                             ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3))
                             : Text('13'.tr)
                         ),

@@ -9,12 +9,12 @@ import 'package:intl_phone_field/phone_number.dart';
 // 2. استيراد الـ Widgets المخصصة
 import '../../../controller/auth/AuthService.dart';
 import '../../../controller/auth/login_controlle.dart';
-import '../../../core/Funaction/funaction_language.dart';
+import '../../../core/Function/functionLanguage.dart';
 import '../../Widget/buildInputField.dart';
 import '../../Widget/widget_Butoon.dart';
 
 // 3. استيراد الثوابت والوظائف المساعدة
-import '../../../core/Funaction/AlertExiteApp.dart';
+import '../../../core/Function/alertExitApp.dart';
 import '../../../core/consta/Color.dart';
 import '../../../core/consta/images.dart';
 import '../../../core/consta/nameRoute.dart';
@@ -33,7 +33,7 @@ class Login extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: WillPopScope(
-        onWillPop: () => AlertExiteApp(),
+        onWillPop: () => alertExitApp(),
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -48,7 +48,7 @@ class Login extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: IconButton(
                         icon: Icon(Icons.language, color: AppColor.color_primary, size: 28),
-                        onPressed: ()=>openLangSheet(),
+                        onPressed: () => openLanguageSheet(),
                         tooltip: 'Change Language',
                       ),
                     ),
@@ -73,7 +73,7 @@ class Login extends StatelessWidget {
                     )),
                     const SizedBox(height: 25),
 
-                    Obx(() => controller.isPhoneLogin.value
+                  controller.isPhoneLogin.value
                     // --- حقل الهاتف ---
                         ? IntlPhoneField(
                       controller: controller.phoneController,
@@ -95,18 +95,18 @@ class Login extends StatelessWidget {
                       '9'.tr,
                       Icons.email_outlined,
                       false,
-                      borderRadius,
-                    )),
+                     
+                    ),
                     const SizedBox(height: 18),
 
                     // --- حقل كلمة المرور (باستخدام الـ Widget الخاص بك) ---
-                    Obx(() => buildInputField(
+                    buildInputField(
                       controller.validatePassword,
                       controller.passwordController,
                       '10'.tr,
                       Icons.lock_outline,
                       controller.obscurePassword.value,
-                      borderRadius,
+                     
                       suffixIcon: IconButton(
                         icon: Icon(
                           controller.obscurePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined,
@@ -114,7 +114,7 @@ class Login extends StatelessWidget {
                         ),
                         onPressed: controller.togglePasswordVisibility,
                       ),
-                    )),
+                    ),
                     const SizedBox(height: 12),
 
                     // --- رابط "نسيت كلمة المرور" ---

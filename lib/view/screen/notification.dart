@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/Funaction/openDialog.dart';
+import '../../core/Function/openDialog.dart';
 import '../../core/consta/Color.dart';
 import 'homepage.dart';
 
@@ -56,9 +56,7 @@ class notification extends StatelessWidget {
               onTap: () async{
                   await openDialog(context);
               },
-                child: Card_list(Icons.ac_unit_rounded,'تاكيد حجز','تم تاكيد حجزك للرحله رقم TR-4545الئ رياض')),
-            Card_list(Icons.ac_unit_rounded,'تذكير للرحله','رحلتك الئ صنعاء غدا في تمام الساعه 2:00م '),
-            Card_list(Icons.ac_unit_rounded,' شاركنا رايك في رحلتك ','رحلتك من تعز الئ مكه قد انتهت..شاركنا رايك لتقييم التجربه'),
+                child: Text('45'.tr),)
           ],
         ),
       ),

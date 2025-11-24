@@ -1,75 +1,111 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:flutter/material.dart';
 
-
-import 'Core/class/StatusRequest.dart';
-import 'controller/test/testControoler.dart';
+import 'core/Class/StatusRequest.dart';
+import 'controller/test/testController.dart';
 import 'core/consta/Color.dart';
 import 'core/consta/images.dart';
+import 'core/consta/dimensions.dart';
 
-class testview extends StatefulWidget {
-  const testview({super.key});
+class TestView extends StatefulWidget {
+  const TestView({super.key});
 
   @override
-  State<testview> createState() => _testviewState();
+  State<TestView> createState() => _TestViewState();
 }
 
-class _testviewState extends State<testview> {
+class _TestViewState extends State<TestView> {
   @override
   Widget build(BuildContext context) {
-    TestDataCintroller controller=Get.put(TestDataCintroller());
     return Scaffold(
       appBar: AppBar(
-        title: Text('بيانات المستخدمين'),
+        title: const Text('بيانات المستخدمين'),
         centerTitle: true,
       ),
       body: SafeArea(
-
-        child: GetBuilder<TestDataCintroller>(
-          builder:  (controller) {
-            if(controller.statRequst==StatRequst.Loding){
-              return Center(child:  Image(image: AssetImage(AppImage.image_setting_active)));
-            }
-            else if(controller.statRequst==StatRequst.serverfielure){
-              return Center(child:  Image(image: AssetImage(AppImage.image_ops_server)));
-            }
-            else if(controller.statRequst==StatRequst.oflinefielure){
-              return Center(child:  Image(image: AssetImage(AppImage.image_forget)));
-            }
-
-            else{
+        child: GetBuilder<TestDataController>(
+          builder: (controller) {
+            if (controller.statusRequest == StatusRequest.loading) {
+              return Center(
+                child: Image.asset(
+                  AppImage.image_setting_active,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.contain,
+                ),
+              );
+            } else if (controller.statusRequest ==
+                StatusRequest.serverFailure) {
+              return Center(
+                child: Image.asset(
+                  AppImage.image_ops_server,
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+              );
+            } else if (controller.statusRequest ==
+                StatusRequest.offlineFailure) {
+              return Center(
+                child: Image.asset(
+                  AppImage.image_forget,
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+              );
+            } else {
               return ListView.builder(
                 itemCount: controller.data.length,
                 itemBuilder: (context, index) {
-                  var view=controller.data[index];
+                  var view = controller.data[index];
                   return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                    decoration: BoxDecoration(
-                        color:AppColor.color_primary,
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20),bottom: Radius.circular(20))
+                    margin: EdgeInsets.symmetric(
+                      horizontal: AppDimensions.marginMedium,
+                      vertical: AppDimensions.marginSmall,
                     ),
-                    child:ListTile(
-                      leading: Icon(Icons.account_circle,color: AppColor.color_primary,size: 50),
-                      title:Text( view['full_name'],style: TextStyle(fontSize: 25,color: AppColor.color_secondary)),
-                      subtitle:Text( view['email'],style: TextStyle(fontSize: 15)),
+                    decoration: BoxDecoration(
+                      color: AppColor.color_primary,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(AppDimensions.radiusXXLarge),
+                        bottom: Radius.circular(AppDimensions.radiusXXLarge),
+                      ),
+                    ),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.account_circle,
+                        color: AppColor.color_primary,
+                        size: AppDimensions.imageSizeSmall,
+                      ),
+                      title: Text(
+                        view['full_name'],
+                        style: TextStyle(
+                          fontSize: AppDimensions.fontSizeTitle,
+                          color: AppColor.color_secondary,
+                        ),
+                      ),
+                      subtitle: Text(
+                        view['email'],
+                        style: TextStyle(fontSize: AppDimensions.fontSizeLarge),
+                      ),
                       trailing: Container(
                         width: 60,
                         child: Row(
                           children: [
                             Icon(Icons.delete_rounded),
-                            SizedBox(width: 10,),
-                            Icon(Icons.note_alt_sharp)
+                            SizedBox(width: AppDimensions.spacingSmall),
+                            Icon(Icons.note_alt_sharp),
                           ],
                         ),
                       ),
-                    ) ,
+                    ),
                   );
-                },);
+                },
+              );
             }
-          },),
+          },
+        ),
       ),
     );
   }

@@ -90,15 +90,10 @@ class LoginController extends GetxController {
   Future<void> login() async {
     if (!formKey.currentState!.validate()) return;
     if (authStatus.value == UserStatus.loading) return;
-     print('rafat');
     final identifier = emailController.text;
-    print(identifier);
     final pwd = passwordController.text;
-    print(pwd);
     final result = await _authService.login(identifier, pwd);
-    print("llll");
     if (result != null) {
-      print("123");
       // تسجيل الدخول ناجح، يمكن استخدام result['user_name'], result['user_id']
       Get.offAllNamed(
           AppRoute.MainController); // أو المسار الذي تريد النقل إليه بعد تسجيل الدخول

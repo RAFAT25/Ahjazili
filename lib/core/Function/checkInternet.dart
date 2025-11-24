@@ -1,5 +1,8 @@
 import 'dart:io';
 
+/// Checks if the device has an active internet connection
+/// 
+/// Returns `true` if internet is available, `false` otherwise
 Future<bool> checkInternet() async {
   try {
     final result = await InternetAddress.lookup('google.com');
@@ -11,3 +14,4 @@ Future<bool> checkInternet() async {
   }
   return false;
 }
+

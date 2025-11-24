@@ -1,9 +1,14 @@
 import '../../model/model/BusTrip.dart';
 
-
+/// Service for managing trip data operations
 class TripService {
+  /// Fetches available trips from the data source
+  /// 
+  /// Returns a list of [BusTrip] objects
+  /// 
+  /// TODO: Replace mock data with actual API call
   Future<List<BusTrip>> fetchTrips() async {
-    await Future.delayed(const Duration(seconds: 2)); // محاكاة تحميل بيانات
+    await Future.delayed(const Duration(seconds: 2)); // Simulating data loading
     return [
       BusTrip(
         tripType: 'رحلة دولية',
@@ -38,3 +43,4 @@ class TripService {
     ];
   }
 }
+

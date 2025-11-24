@@ -5,7 +5,7 @@ import 'package:travelsystem/core/consta/Color.dart';
 
 
 import '../../../../controller/auth/CheckEmail_Controller.dart';
-import '../../../../core/Funaction/validatorInput.dart';
+import '../../../../core/Function/validatorInput.dart';
 import '../../../../core/consta/images.dart';
 import '../../../controller/auth/CheckEmailSginup_Controller.dart';
 import '../../Widget/ConstomCheckForget/ConstomCheckForget.dart';
@@ -49,7 +49,7 @@ class CheckEmail extends StatelessWidget {
                     return  validatorInput(value!,'14'.tr,);
                   },
                   controller.Email, '9'.tr,
-                  Icons.email, false, borderRadius),
+                  Icons.email, false,),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

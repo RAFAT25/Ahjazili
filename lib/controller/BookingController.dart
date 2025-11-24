@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import '../core/Class/StatusRequest.dart';
-import '../core/Funaction/checkEnternet.dart';
+import '../core/Function/checkInternet.dart';
 import '../view/screen/trips_page.dart';
 
+/// Controller for managing booking operations
 class BookingController extends GetxController {
   final List<String> cities = ['صنعاء', 'عدن', 'تعز', 'الحديدة', 'إب', 'الرياض'];
-  final requst = StatRequst.succes.obs;
+  final request = StatusRequest.success.obs;
 
   final List<String> tripTypes = ['VIP', 'عادي'];
 
@@ -41,12 +42,13 @@ class BookingController extends GetxController {
   }
 
 
+  /// Searches for available trips based on selected criteria
   Future<void> searchTrips() async {
     if (!await checkInternet()) {
-      requst.value = StatRequst.noInternet;
+      request.value = StatusRequest.noInternet;
       return;
     }
-    requst.value = StatRequst.Loding;
+    request.value = StatusRequest.loading;
     final Map<String, dynamic> requestData = {
       'from_stop': departureCity.value,
       'to_city': arrivalCity.value,
@@ -63,20 +65,20 @@ class BookingController extends GetxController {
       if (response.statusCode == 200) {
         final result = json.decode(response.body);
         if (result['success'] == true && result['trips'] != null) {
-          requst.value = StatRequst.succes;
+          request.value = StatusRequest.success;
           Get.snackbar('تم البحث', 'عدد الرحلات: ${result['trips'].length}');
           Get.to(() => TripsPage(), arguments: result['trips']);
         } else {
-          requst.value = StatRequst.oflinefielure;
+          request.value = StatusRequest.offlineFailure;
           Get.snackbar('خطأ في البحث', result['error'] ?? 'لم يتم العثور على رحلات مناسبة');
         }
       } else {
-        requst.value = StatRequst.oflinefielure;
+        request.value = StatusRequest.offlineFailure;
         Get.snackbar('خطأ في البحث', 'لم يتم العثور على رحلات مناسبة');
       }
     } catch (e) {
-      requst.value = StatRequst.oflinefielure;
-      Get.snackbar('خطاء', 'حدث خطأ أثناء البحث: $e');
+      request.value = StatusRequest.offlineFailure;
+      Get.snackbar('خطأ', 'حدث خطأ أثناء البحث: $e');
     }
   }
 

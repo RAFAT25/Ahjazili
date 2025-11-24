@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/consta/Color.dart';
+import '../../core/consta/dimensions.dart';
 
 class NoInternetWidget extends StatelessWidget {
   final VoidCallback onRetry;
@@ -10,17 +11,38 @@ class NoInternetWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset('image/Internet Connection.gif', height: 200, width: 300),
-        const SizedBox(height: 20),
-        Text("لا يوجد اتصال بالإنترنت", style: TextStyle(fontSize: 19, color: Colors.red, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
+        Image.asset(
+          'image/Internet Connection.gif',
+          height: 200,
+          width: 300,
+          fit: BoxFit.contain,
+          cacheWidth: 300,
+          cacheHeight: 200,
+        ),
+        SizedBox(height: AppDimensions.spacingLarge),
+        Text(
+          "لا يوجد اتصال بالإنترنت",
+          style: TextStyle(
+            fontSize: AppDimensions.fontSizeXLarge,
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: AppDimensions.spacingMedium),
         ElevatedButton.icon(
           onPressed: onRetry,
-          icon: Icon(Icons.refresh, color: Colors.white),
-          label: Text("إعادة المحاولة", style: TextStyle(fontWeight: FontWeight.bold)),
+          icon: const Icon(Icons.refresh, color: Colors.white),
+          label: Text(
+            "إعادة المحاولة",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           style: ElevatedButton.styleFrom(
-              backgroundColor: AppColor.color_primary,
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14)
+            backgroundColor: AppColor.color_primary,
+            padding: EdgeInsets.symmetric(
+              horizontal: AppDimensions.paddingLarge,
+              vertical: AppDimensions.paddingMedium,
+            ),
+            minimumSize: Size(0, AppDimensions.buttonHeightMedium),
           ),
         ),
       ],

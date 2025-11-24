@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelsystem/core/consta/Color.dart';
 import '../../../../controller/auth/CheckEmail_Controller.dart';
-import '../../../../core/Funaction/validatorInput.dart';
+import '../../../../core/Function/validatorInput.dart';
 import '../../../../core/consta/images.dart';
 import '../../../Widget/ConstomCheckForget/ConstomCheckForget.dart';
 import '../../../Widget/buildInputField.dart';
@@ -45,7 +45,7 @@ class ForgetPassword extends StatelessWidget {
                     return  validatorInput(value!,'16'.tr,);
                   },
                   controller.Email, '9'.tr,
-                  Icons.email, false, borderRadius),
+                  Icons.email, false),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

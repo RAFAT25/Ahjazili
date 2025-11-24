@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:travelsystem/core/consta/nameRoute.dart';
+import '../../core/Function/logger.dart';
 
 enum UserStatus { guest, authenticated, loading }
 
@@ -55,7 +56,7 @@ class AuthService extends GetxService {
   Future<void> setOnboardingSeen() async {
     // اكتب القيمة true في الذاكرة لحفظها بشكل دائم.
     await _storage.write(_onboardingKey, true);
-    print("AuthService: Onboarding has been marked as seen.");
+    AppLogger.debug("Onboarding has been marked as seen.", "AuthService");
   }
   // Getters
   bool get isGuest => userStatus.value == UserStatus.guest;
@@ -75,10 +76,8 @@ class AuthService extends GetxService {
       body: jsonData,
     );
     if (response.statusCode == 200) {
-      print("456");
       final body = json.decode(response.body);
       if (body['success'] == true) {
-        print("741");
         await _storage.write(_userTokenKey, body['token']);
         await _storage.write(_userIdKey, body['user_id']);
         await _storage.write(_userNameKey, body['user_name']);
@@ -86,16 +85,19 @@ class AuthService extends GetxService {
         await _storage.write(_userPhoneKey, body['user_phone']);
         await _storage.write(_userStatusKey, true);
         userStatus.value = UserStatus.authenticated;
-          print(_userTokenKey);
+        AppLogger.success("User logged in successfully", "AuthService");
         return {
           'user_id': body['user_id'],
           'user_name': body['user_name'],
           'token': body['token'],
         };
+      } else {
+        AppLogger.warning("Login failed: ${body['message'] ?? 'Unknown error'}", "AuthService");
       }
+    } else {
+      AppLogger.error("Login request failed with status: ${response.statusCode}", null, null, "AuthService");
     }
     userStatus.value = UserStatus.guest;
-    print("789");
     return null;
 
   }

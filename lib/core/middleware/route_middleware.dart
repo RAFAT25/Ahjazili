@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:travelsystem/core/consta/nameRoute.dart';
 
 import '../../controller/auth/AuthService.dart';
+import '../Function/logger.dart';
 
 class RouteMiddleware extends GetMiddleware {
   @override
@@ -17,7 +18,7 @@ class RouteMiddleware extends GetMiddleware {
     final bool seenOnboarding = authService.hasSeenOnboarding();
     final bool isLoggedIn = authService.isAuthenticated;
 
-    print("Middleware: Checking route '$route'. Seen Onboarding: $seenOnboarding, Is Logged In: $isLoggedIn");
+    AppLogger.debug("Checking route '$route'. Seen Onboarding: $seenOnboarding, Is Logged In: $isLoggedIn", "RouteMiddleware");
 
     // --- القاعدة رقم 1: التعامل مع Onboarding ---
     // إذا لم ير المستخدم Onboarding، يجب أن يذهب إليها أولاً وقبل كل شيء.

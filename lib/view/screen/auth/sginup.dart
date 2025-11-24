@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../controller/auth/Sginup_controller.dart';
-import '../../../core/Funaction/validatorInput.dart';
+import '../../../core/Function/validatorInput.dart';
 import '../../../core/consta/Color.dart';
 import '../../Widget/buildInputField.dart';
 import 'package:travelsystem/core/consta/images.dart';
@@ -57,7 +57,7 @@ class Sginup extends StatelessWidget {
                     '30'.tr,
                     Icons.person,
                     false,
-                    borderRadius,
+                 
                   ),
                   SizedBox(height: 16),
 
@@ -107,7 +107,7 @@ class Sginup extends StatelessWidget {
                     '9'.tr,
                     Icons.email,
                     false,
-                    borderRadius,
+                   
                   ),
                   SizedBox(height: 16),
 
@@ -131,13 +131,13 @@ class Sginup extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
 
-                  Obx(() => buildInputField(
+                  buildInputField(
                         (value) => validatorInput(value!, '18'.tr),
                     controller.passwordController,
                     '10'.tr,
                     Icons.lock,
                     controller.obscurePassword.value,
-                    borderRadius,
+                  
                     suffixIcon: IconButton(
                       icon: Icon(
                         controller.obscurePassword.value
@@ -147,15 +147,15 @@ class Sginup extends StatelessWidget {
                       ),
                       onPressed: controller.togglePasswordVisibility,
                     ),
-                  )),
+                  ),
                   SizedBox(height: 16),
-                  Obx(() => buildInputField(
+                   buildInputField(
                         (value) => validatorInput(value!, '15'.tr),
                     controller.confirmPasswordController,
                     '32'.tr,
                     Icons.lock_outline,
                     controller.obscureConfirmPassword.value,
-                    borderRadius,
+                  
                     suffixIcon: IconButton(
                       icon: Icon(
                         controller.obscureConfirmPassword.value
@@ -165,7 +165,7 @@ class Sginup extends StatelessWidget {
                       ),
                       onPressed: controller.toggleConfirmPasswordVisibility,
                     ),
-                  )),
+                  ),
                   SizedBox(height: 20),
 
                   // رسالة الخطأ

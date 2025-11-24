@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import '../Function/logger.dart';
 
 // تم تغيير اسم الكلاس ليتبع معايير Dart
 class LocaleController extends GetxController {
@@ -37,11 +38,11 @@ class LocaleController extends GetxController {
 
     if (savedLangCode != null && savedLangCode.isNotEmpty) {
       // 2. إذا كانت هناك لغة محفوظة، قم بتطبيقها على التطبيق
-      print("LocaleController: Found saved language: $savedLangCode");
+      AppLogger.debug("Found saved language: $savedLangCode", "LocaleController");
       changeLang(savedLangCode);
     } else {
       // 3. إذا لم تكن هناك لغة محفوظة، استخدم لغة الجهاز
-      print("LocaleController: No saved language, using device locale: ${Get.deviceLocale?.languageCode}");
+      AppLogger.debug("No saved language, using device locale: ${Get.deviceLocale?.languageCode}", "LocaleController");
       appLocale.value = Get.deviceLocale ?? const Locale('ar'); // 'ar' كلغة افتراضية
     }
     update();
@@ -53,7 +54,7 @@ class LocaleController extends GetxController {
   Future<void> changeLang(String langCode) {
     // 1. التحقق من أن اللغة الجديدة مختلفة عن الحالية لتجنب العمل غير الضروري
     if (currentLangCode == langCode) {
-      print("LocaleController: Language is already set to $langCode.");
+      AppLogger.debug("Language is already set to $langCode", "LocaleController");
       return Future.value(); // إنهاء الدالة
     }
 
@@ -69,7 +70,7 @@ class LocaleController extends GetxController {
     // 5. تحديث المتغير التفاعلي لإعلام الواجهات الأخرى بالتغيير
     appLocale.value = newLocale;
 
-    print("LocaleController: Language changed to $langCode.");
+    AppLogger.info("Language changed to $langCode", "LocaleController");
     update();
     return Future.value();
 

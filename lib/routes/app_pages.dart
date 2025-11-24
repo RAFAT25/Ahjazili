@@ -59,7 +59,7 @@ List<GetPage<dynamic>>? getPages=[
     page: () => const BookingView(),
     binding: BookingBinding()
   ),
-  GetPage(name: AppRoute.testview, page:()=> testview()),
+  GetPage(name: AppRoute.testview, page: () => const TestView()),
   GetPage(name: AppRoute.TripsPage, page: ()=>TripsPage())
 ];
 

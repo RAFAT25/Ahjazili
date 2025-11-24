@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
-import '../core/Serveses/trip_service.dart';
+import '../core/Services/tripService.dart';
 import '../model/model/BusTrip.dart';
+
+/// Controller for managing trip data
 class TripController extends GetxController {
   RxList<BusTrip> trips = <BusTrip>[].obs;
   RxBool loading = false.obs;

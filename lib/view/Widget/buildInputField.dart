@@ -8,7 +8,7 @@ final String? Function(String?)validator,
     String label,
     IconData icon,
     bool obscure,
-    double borderRadius, {
+    {
       Widget? suffixIcon,
       void Function(String)? onChanged,
     }) {
@@ -17,7 +17,7 @@ final String? Function(String?)validator,
     decoration: BoxDecoration(
       color: Colors.white,
       border: Border.all(color: Colors.grey.shade300),
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(10),
       boxShadow: [
         BoxShadow(
             color: Colors.black.withOpacity(0.02),

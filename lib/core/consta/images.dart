@@ -9,7 +9,10 @@ class AppImage{
   static String image_setting="image/setting.png";
   static String image_setting_active="image/setting_active.png";
   static String image_travelers="image/traveler.png";
-  static String image_loding="image/Sandy Loading.gif";
+  static String image_loading = "image/Sandy Loading.gif";
+  
+  // Legacy getter for backward compatibility
+  static String get image_loding => image_loading;
 
 
 }
